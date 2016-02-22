@@ -4,7 +4,7 @@ var Link = ReactRouter.Link;
 var App = React.createClass({
     getInitialState: function () {
         return {
-            hello: 'Hello world'
+            hello: 'App'
         };
     },
     render: function () {
