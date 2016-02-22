@@ -3,7 +3,7 @@ var React = require('react');
 var Index = React.createClass({
     getInitialState: function () {
         return {
-            hello: 'Index'
+            hello: 'Home'
         };
     },
     render: function () {

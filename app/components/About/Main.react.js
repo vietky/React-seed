@@ -3,7 +3,7 @@ var React = require('react');
 var About = React.createClass({
     getInitialState: function () {
         return {
-            hello: 'About'
+            hello: 'About me'
         };
     },
     render: function () {
