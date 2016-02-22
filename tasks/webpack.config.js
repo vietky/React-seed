@@ -33,6 +33,7 @@ var config = function (isProd) {
             'jquery': 'jQuery',
             'react': 'React',
             'react-dom': 'ReactDOM',
+            'react-router': 'ReactRouter',
             'react-bootstrap': 'react-bootstrap',
         },
         plugins: plugins,

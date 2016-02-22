@@ -1,16 +1,16 @@
 var React = require('react');
 
-var Test = React.createClass({
+var Index = React.createClass({
     getInitialState: function () {
         return {
-            hello: 'Hello world'
+            hello: 'Index'
         };
     },
     render: function () {
         return (
-            <h1>{this.state.hello}</h1>
+            <h2>{this.state.hello}</h2>
         );
     }
 });
 
-module.exports = Test;
+module.exports = Index;

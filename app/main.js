@@ -1,8 +1,8 @@
 var css = require('./styles/main.scss');
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Test = require('./Test.react.js');
+var Router = require('./components/Router.react.js')();
 
-console.log(document.getElementById('main'));
-ReactDOM.render(<Test />, document.getElementById('main'));
+//var ReactDOM = require('react-dom');
+//console.log(document.getElementById('main'));
+//var App = require('./components/App.react.js');
+//ReactDOM.render(<App />, document.getElementById('main'));
