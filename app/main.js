@@ -1,3 +1,5 @@
+var css = require('./styles/main.scss');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Test = require('./Test.react.js');

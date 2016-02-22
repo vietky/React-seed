@@ -35,6 +35,10 @@ var config = {
                 exclude: '/node_modules/',
                 loader: 'babel-loader'
             },
+            {
+                test: /\.(css|scss|sass)$/,
+                loader: 'style!css!sass'
+            }
         ],
     }
 };
