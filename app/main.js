@@ -1,6 +1,6 @@
 var css = require('./styles/main.scss');
 
-var Router = require('./components/Router.react.js')();
+require('./components/Router.react.js')();
 
 //var ReactDOM = require('react-dom');
 //console.log(document.getElementById('main'));

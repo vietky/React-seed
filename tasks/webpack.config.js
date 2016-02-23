@@ -9,17 +9,25 @@ var outputPath = path.resolve(root, 'dist/');
 var plugins = [];
 
 var config = function (isProd) {
+    plugins.push(new webpack.DefinePlugin({
+        IS_PROD: isProd
+    }));
 
     if (!isProd) {
         outputPath = path.resolve(root);
-        entries.push('webpack/hot/dev-server');
-        entries.push('webpack-dev-server/client?http://localhost:8080');
+        entries.push.apply(entries, [
+            'webpack/hot/dev-server',
+            'webpack-dev-server/client?http://localhost:8080'
+        ]);
 
-        plugins.push(
-            new webpack.HotModuleReplacementPlugin()
-        );
+        plugins.push.apply(plugins, [
+            new webpack.HotModuleReplacementPlugin(),
+        ]);
+    } else {
+        plugins.push.apply(plugins, [
+            new webpack.optimize.UglifyJsPlugin(),
+        ]);
     }
-
     return {
         entry: entries,
         output: {

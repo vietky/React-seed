@@ -3,7 +3,8 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var IndexRoute = ReactRouter.IndexRoute;
 var Route = ReactRouter.Route;
-var browserHistory = ReactRouter.browserHistory;
+var browserHistory;
+if (!IS_PROD) browserHistory = ReactRouter.browserHistory;
 
 var App = require('./App.react.js');
 var Index = require('./index/Main.react.js');
