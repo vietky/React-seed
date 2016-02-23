@@ -34,7 +34,7 @@ var config = function (isProd) {
             'react': 'React',
             'react-dom': 'ReactDOM',
             'react-router': 'ReactRouter',
-            'react-bootstrap': 'react-bootstrap',
+            'react-bootstrap': 'ReactBootstrap',
         },
         plugins: plugins,
         module: {
