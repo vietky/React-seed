@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
 var App = React.createClass({
@@ -13,6 +14,7 @@ var App = React.createClass({
                 <h1>{this.state.hello}</h1>
                 <ul>
                     <li><Link to="/index">Index</Link></li>
+                    <li><Link to="/bstable">BsTable</Link></li>
                     <li><Link to="/demo">Demo</Link></li>
                     <li><Link to="/about">About</Link></li>
                 </ul>

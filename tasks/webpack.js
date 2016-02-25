@@ -11,10 +11,11 @@ gulp.task('webpack-dev-server', [], function () {
     new WebpackDevServer(compiler, {
         contentBase: buildConfig.appFolder,
         filename: 'bundle.js',
+        historyApiFallback: true,
         hot: true,
         inline: true,
         quiet: false,
-        noInfo: false,
+        noInfo: true,
         stats: {
             colors: true
         }
