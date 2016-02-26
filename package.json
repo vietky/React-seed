@@ -1,8 +1,8 @@
 {
-  "name": "Zenith",
+  "name": "react-seed",
   "version": "0.0.1",
-  "description": "Zinio - Admin Page",
-  "repository": "https://github.com/vietky/React-seed",
+  "description": "React Starter Kit",
+  "repository": "https://github.com/vietky/react-seed",
   "main": "js/app.js",
   "dependencies": {
     "flux": "^2.1.1",
