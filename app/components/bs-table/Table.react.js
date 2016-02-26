@@ -56,7 +56,13 @@ var Table = React.createClass({
             var item = {};
             for (var j=0;j<this.state.cells.length;j++)
             {
-                item[j] = this.state.cells[j](i);
+                if (typeof this.state.cells[j] === 'function'){
+                    item[j] = this.state.cells[j](i);
+                }
+                else
+                {
+                    item[j] = this.state.cells[j];
+                }
             }
             data.push(item);
         }
