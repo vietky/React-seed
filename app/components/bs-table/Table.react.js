@@ -46,12 +46,12 @@ var Table = React.createClass({
         var numberOfPages = Math.ceil(this.props.rowsCount / itemsPerPage);
         var start = (currentPage - 1) * itemsPerPage;
         var end = start + itemsPerPage;
-        if (end >= this.props.rowsCount)
+        if (end > this.props.rowsCount)
         {
-            end = this.props.rowsCount - 1;
+            end = this.props.rowsCount;
         }
         var data = [];
-        for (var i=start;i<=end;i++)
+        for (var i=start;i<end;i++)
         {
             var item = {};
             for (var j=0;j<this.state.cells.length;j++)

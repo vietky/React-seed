@@ -31,7 +31,7 @@ var Main = React.createClass({
                     }} />
                 <Column header={<Cell>Avatar</Cell>}
                     cell={
-                        <Cell><img src='http://cdn.playbuzz.com/cdn/7a7a5814-ed79-410c-b748-db6a24f73f0b/4d71c010-f930-4334-ba62-79d87a7ddef4.jpg' />     </Cell>
+                        <Cell><img src='http://vignette2.wikia.nocookie.net/yugioh/images/3/33/GoodHero-JP-Anime-GX-NC.png/revision/20140907022250' />     </Cell>
                     } />
             </Table>
         );
