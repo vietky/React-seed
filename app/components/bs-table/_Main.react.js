@@ -9,7 +9,7 @@ var Main = React.createClass({
         return (
             <Table data={FakeData}
                 currentPage={currentPage}
-                itemsPerPage={50}
+                itemsPerPage={10}
                 responsive
                 striped
                 bordered
