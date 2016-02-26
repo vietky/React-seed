@@ -39,7 +39,6 @@ var Pagination = React.createClass({
         if (end === this.props.numberOfPages){
             start = Math.max(1, end - pagerToDisplay + 1);
         }
-        console.log(pagerToDisplay, start, end);
 
         for (var i=start;i<=end;i++){
             pages.push(createLink(i));
