@@ -7,7 +7,7 @@ var Pagination = React.createClass({
     propTypes: {
         numberOfPages: PropTypes.number.isRequired,
         currentPage: PropTypes.number.isRequired,
-        onChanged: PropTypes.func,
+        onClick: PropTypes.func,
     },
     getDefaultProps: function(){
         return {
@@ -20,19 +20,18 @@ var Pagination = React.createClass({
     _onChanged: function (pageNumber, e) {
         e.preventDefault();
         var pageToNavigate = Math.max(1, Math.min(this.props.numberOfPages, pageNumber));
-        this.props.onChanged(pageToNavigate);
+        this.props.onClick(pageToNavigate);
     },
     render: function () {
         var self = this;
         var currentPage = this.props.currentPage;
         var createLink = function(pageNumber) {
             return (
-                <li className={pageNumber===currentPage?'active':''}>
-                    <a href='#' key={pageNumber} onClick={self._onChanged.bind(self, pageNumber)}>{pageNumber}</a>
+                <li key={pageNumber} className={pageNumber===currentPage?'active':''}>
+                    <a href='#' onClick={self._onChanged.bind(self, pageNumber)}>{pageNumber}</a>
                 </li>
             );
         };
-        var pages = [];
         var pagerToDisplay = Math.min(this.props.numberOfPages, this.props.pagerToDisplay);
         var start = Math.max(1, currentPage - Math.floor(pagerToDisplay / 2));
         var end = Math.min(this.props.numberOfPages, start + pagerToDisplay - 1);
@@ -40,6 +39,7 @@ var Pagination = React.createClass({
             start = Math.max(1, end - pagerToDisplay + 1);
         }
 
+        var pages = [];
         for (var i=start;i<=end;i++){
             pages.push(createLink(i));
         }

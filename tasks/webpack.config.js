@@ -5,6 +5,7 @@ var root = path.resolve(__dirname, '..');
 var entries = [
     path.resolve(root, 'app/main.js')
 ];
+
 var outputPath = path.resolve(root, 'dist/');
 var plugins = [];
 

@@ -11,7 +11,7 @@ var Pagination = require('./Pagination.react.js');
 
 var Table = React.createClass({
     propTypes: {
-        data: PropTypes.array.isRequired,
+        rowsCount: PropTypes.number.isRequired,
         itemsPerPage: PropTypes.number.isRequired
     },
     getInitialState: function () {
@@ -19,21 +19,20 @@ var Table = React.createClass({
     },
     _calculateState: function (props) {
         var headers = [];
-        var contents = [];
+        var cells = [];
         ReactChildren.forEach(props.children, function (child) {
             if (child === null) {
                 return;
             }
             assert(child.type.__TableColumn__, 'Wrong usage. Children should be <Column />');
-            headers.push({
-                header: child.props.header,
-                keyField: child.props.keyField,
-            });
+            headers.push(child.props.header);
+            cells.push(child.props.cell);
         });
 
         return {
             currentPage: Number(this.props.currentPage),
-            headers: headers
+            headers: headers,
+            cells: cells,
         };
     },
     _goToPage: function (pageNumber){
@@ -44,19 +43,32 @@ var Table = React.createClass({
     render: function () {
         var currentPage = this.state.currentPage;
         var itemsPerPage = this.props.itemsPerPage;
-        var numberOfPages = Math.ceil(this.props.data.length / itemsPerPage);
+        var numberOfPages = Math.ceil(this.props.rowsCount / itemsPerPage);
         var start = (currentPage - 1) * itemsPerPage;
         var end = start + itemsPerPage;
-        var data = this.props.data.slice(start, end);
+        if (end >= this.props.rowsCount)
+        {
+            end = this.props.rowsCount - 1;
+        }
+        var data = [];
+        for (var i=start;i<=end;i++)
+        {
+            var item = {};
+            for (var j=0;j<this.state.cells.length;j++)
+            {
+                item[j] = this.state.cells[j](i);
+            }
+            data.push(item);
+        }
         return (
             <div>
             <Pagination
                 numberOfPages={numberOfPages}
                 currentPage={currentPage}
-                onChanged={this._goToPage} />
+                onClick={this._goToPage} />
             <RBTable {...this.props}>
                 <Header columns={this.state.headers} />
-                <Content data={data} columns={this.state.headers} />
+                <Content data={data} />
             </RBTable>
             </div>
         );

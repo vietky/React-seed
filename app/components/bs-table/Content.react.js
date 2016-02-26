@@ -3,19 +3,33 @@ var PropTypes = React.PropTypes;
 
 var Content = React.createClass({
     propTypes: {
-        data: PropTypes.array.isRequired,
-        columns: PropTypes.array.isRequired
+        data: PropTypes.array.isRequired
     },
     render: function(){
-        var columns = this.props.columns;
-        var createRow = function (row){
+        var createCells = function (item){
             var cells = [];
-            for (var i in columns){
-                cells.push(<td key={row.id + "-" + row[columns[i].keyField]}>{row[columns[i].keyField]}</td>);
+            for (var i in item)
+            {
+                cells.push(
+                    <td key={i}>
+                        {item[i]}
+                    </td>
+                );
             }
-            return <tr key={row.id}>{cells}</tr>;
+           return cells;
         };
-        return <tbody>{this.props.data.map(createRow)}</tbody>;
+        var createRow = function (item, index){
+            return (
+                <tr key={index}>
+                    {createCells(item)}
+                </tr>
+            );
+        };
+        return (
+            <tbody>
+                {this.props.data.map(createRow)}
+            </tbody>
+        );
     }
 });
 

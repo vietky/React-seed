@@ -1,13 +1,15 @@
 var React = require('react');
 var Table = require('./Table.react.js');
 var Column = require('./Column.react.js');
+var Cell = require('./Cell.react.js');
 var FakeData = require('../FakeData/PeopleList.js');
 
 var Main = React.createClass({
     render: function () {
+        var data = FakeData;
         var currentPage = this.props.params.page || 1;
         return (
-            <Table data={FakeData}
+            <Table rowsCount={data.length}
                 currentPage={currentPage}
                 itemsPerPage={10}
                 responsive
@@ -15,9 +17,18 @@ var Main = React.createClass({
                 bordered
                 condensed
                 hover>
-                <Column header="Id" keyField="id" />
-                <Column header="Name" keyField="name" />
-                <Column header="Email" keyField="email" />
+                <Column header={<Cell>Id</Cell>}
+                    cell={function(rowIndex){
+                        return <Cell>{data[rowIndex].id}</Cell>;
+                    }} />
+                <Column header={<Cell>Name</Cell>}
+                    cell={function(rowIndex){
+                        return <Cell>{data[rowIndex].name}</Cell>;
+                    }} />
+                <Column header={<Cell>Email</Cell>}
+                    cell={function(rowIndex){
+                        return <Cell>{data[rowIndex].email}</Cell>;
+                    }} />
             </Table>
         );
     }
