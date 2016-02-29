@@ -5,8 +5,7 @@ var ReactBootstrap = require('react-bootstrap');
 var RBTable = ReactBootstrap.Table;
 var assert = require('invariant');
 
-var Header = require('./Header.react.js');
-var Content = require('./Content.react.js');
+var RowContent = require('./RowContent.react.js');
 var Pagination = require('./Pagination.react.js');
 
 var Table = React.createClass({
@@ -66,6 +65,18 @@ var Table = React.createClass({
             }
             data.push(item);
         }
+        
+        var createHeader = function (cell, index) {
+            return (
+                <th key={index}>{cell}</th>
+            );
+        };
+        
+        var createRow = function (item, index){
+            return (
+                <RowContent key={index} content={item} />
+            );
+        };
         return (
             <div>
             <Pagination
@@ -73,8 +84,18 @@ var Table = React.createClass({
                 currentPage={currentPage}
                 onClick={this._goToPage} />
             <RBTable {...this.props}>
-                <Header columns={this.state.headers} />
-                <Content data={data} />
+                <thead>
+                    <tr>
+                    {
+                        this.state.headers.map(createHeader)
+                    }
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    data.map(createRow)
+                }
+                </tbody>
             </RBTable>
             </div>
         );

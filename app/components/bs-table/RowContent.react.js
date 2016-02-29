@@ -3,7 +3,7 @@ var PropTypes = React.PropTypes;
 
 var Content = React.createClass({
     propTypes: {
-        data: PropTypes.array.isRequired
+        content: PropTypes.object.isRequired
     },
     render: function(){
         var createCells = function (item){
@@ -18,17 +18,10 @@ var Content = React.createClass({
             }
            return cells;
         };
-        var createRow = function (item, index){
-            return (
-                <tr key={index}>
-                    {createCells(item)}
-                </tr>
-            );
-        };
         return (
-            <tbody>
-                {this.props.data.map(createRow)}
-            </tbody>
+            <tr>
+                {createCells(this.props.content)}
+            </tr>
         );
     }
 });
