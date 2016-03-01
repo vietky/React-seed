@@ -1,21 +1,40 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-var Content = React.createClass({
+var RowContent = React.createClass({
     propTypes: {
-        content: PropTypes.object.isRequired
+        content: PropTypes.object.isRequired,
+        onEdit: PropTypes.func,
+    },
+    getInitialState: function(){
+        return {
+            editing: false,
+        };
+    },
+    _onEdit: function(e){
+        e.preventDefault();
+        var editing = !this.state.editing;
+        this.setState({
+            editing: editing
+        });
     },
     render: function(){
+        var self = this;
         var createCells = function (item){
             var cells = [];
             for (var i in item)
             {
                 cells.push(
                     <td key={i}>
-                        {item[i]}
+                        {self.state.editing && item[i].editor ? item[i].editor : item[i].value}
                     </td>
                 );
             }
+            cells.push(
+                <td key={cells.length}>
+                    <a href='#' onClick={self._onEdit}>Edit</a>
+                </td>
+            );
            return cells;
         };
         return (
@@ -26,4 +45,4 @@ var Content = React.createClass({
     }
 });
 
-module.exports = Content;
+module.exports = RowContent;

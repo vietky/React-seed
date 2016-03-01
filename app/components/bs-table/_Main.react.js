@@ -24,15 +24,14 @@ var Main = React.createClass({
                 <Column header={<Cell>Name</Cell>}
                     cell={function(rowIndex){
                         return <Cell>{data[rowIndex].name}</Cell>;
+                    }}
+                    editor={function(rowIndex){
+                        return <Cell><input type='text' value={data[rowIndex].name} /></Cell>;
                     }} />
                 <Column header={<Cell>Email</Cell>}
                     cell={function(rowIndex){
                         return <Cell>{data[rowIndex].email}</Cell>;
                     }} />
-                <Column header={<Cell>Avatar</Cell>}
-                    cell={
-                        <Cell><img src='http://vignette2.wikia.nocookie.net/yugioh/images/3/33/GoodHero-JP-Anime-GX-NC.png/revision/20140907022250' />     </Cell>
-                    } />
             </Table>
         );
     }

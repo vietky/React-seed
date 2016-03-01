@@ -19,6 +19,7 @@ var Table = React.createClass({
     _calculateState: function (props) {
         var headers = [];
         var cells = [];
+        var editors = [];
         ReactChildren.forEach(props.children, function (child) {
             if (child === null) {
                 return;
@@ -26,12 +27,14 @@ var Table = React.createClass({
             assert(child.type.__TableColumn__, 'Wrong usage. Children should be <Column />');
             headers.push(child.props.header);
             cells.push(child.props.cell);
+            editors.push(child.props.editor);
         });
 
         return {
             currentPage: Number(this.props.currentPage),
             headers: headers,
             cells: cells,
+            editors: editors
         };
     },
     _goToPage: function (pageNumber){
@@ -55,12 +58,23 @@ var Table = React.createClass({
             var item = {};
             for (var j=0;j<this.state.cells.length;j++)
             {
-                if (typeof this.state.cells[j] === 'function'){
-                    item[j] = this.state.cells[j](i);
+                item[j] = {};
+                if (typeof this.state.editors[j] === 'function')
+                {
+                    item[j].editor = this.state.editors[j](i);
                 }
                 else
                 {
-                    item[j] = this.state.cells[j];
+                    item[j].editor = this.state.editors[j];
+                }
+
+                if (typeof this.state.cells[j] === 'function')
+                {
+                    item[j].value = this.state.cells[j](i);
+                }
+                else
+                {
+                    item[j].value = this.state.cells[j];
                 }
             }
             data.push(item);
