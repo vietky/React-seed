@@ -2,7 +2,7 @@ var React = require('react');
 var Table = require('./Table.react.js');
 var Column = require('./Column.react.js');
 var Cell = require('./Cell.react.js');
-var FakeData = require('../FakeData/PeopleList.js');
+var FakeData = require('../fake-data/PeopleList.js');
 
 var Main = React.createClass({
     render: function () {

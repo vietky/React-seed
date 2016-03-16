@@ -1,12 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
-var root = path.resolve(__dirname, '..');
+var buildConfig = require('./build.config.js');
 
 var entries = [
-    path.resolve(root, 'app/main.js')
+    path.resolve(buildConfig.appFolder, 'main.js')
 ];
 
-var outputPath = path.resolve(root, 'dist/');
+var outputPath = buildConfig.distFolder;
 var plugins = [];
 
 var config = function (isProd) {
@@ -15,7 +15,7 @@ var config = function (isProd) {
     }));
 
     if (!isProd) {
-        outputPath = path.resolve(root);
+        outputPath = buildConfig.root;
         entries.push.apply(entries, [
             'webpack/hot/dev-server',
             'webpack-dev-server/client?http://localhost:8080'
