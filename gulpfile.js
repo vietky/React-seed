@@ -4,13 +4,13 @@ var requireDir = require('require-dir');
 requireDir('./tasks/');
 
 gulp.task('build', [], function () {
-    runSequence(['clean'], ['copy', 'webpack'], function () {
+    runSequence(['clean'], ['copy', 'webpack-client'], function () {
         console.log('Done! :)');
     });
 });
 
 gulp.task('default', [], function () {
-    runSequence(['clean'], ['webpack-dev-server'], function () {
+    runSequence(['clean'], ['webpack-dev-server'], ['server'], function () {
         console.log('Done! :)');
     });
 });

@@ -9,13 +9,16 @@ var entries = [
 var outputPath = pathConfig.distFolder;
 var plugins = [];
 
-var config = function (isProd) {
+var config = function () {
+    var isProd = process.env.NODE_ENV === "production";
     plugins.push(new webpack.DefinePlugin({
-        IS_PROD: isProd
+        'process.env': {
+            'NODE_ENV': process.env.NODE_ENV
+        }
     }));
 
     if (!isProd) {
-        outputPath = pathConfig.root;
+        outputPath = pathConfig.appFolder;
         entries.push.apply(entries, [
             'webpack/hot/dev-server',
             'webpack-dev-server/client?http://localhost:8080'

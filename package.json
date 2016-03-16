@@ -5,6 +5,9 @@
   "repository": "https://github.com/vietky/react-seed",
   "main": "js/app.js",
   "dependencies": {
+    "babel-register": "^6.7.2",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
     "flux": "^2.1.1",
     "invariant": "^2.2.0",
     "keymirror": "^0.1.1",
@@ -22,6 +25,7 @@
     "del": "^2.2.0",
     "faker": "^3.0.1",
     "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.6",
     "gulp-rename": "^1.2.2",
     "node-sass": "^3.4.2",
     "require-dir": "^0.3.0",

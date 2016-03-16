@@ -6,7 +6,7 @@ var pathConfig = require('../configs/path.js');
 var webpackConfig = require('./webpack.config.js');
 
 gulp.task('webpack-dev-server', [], function () {
-    var compiler = webpack(webpackConfig(false));
+    var compiler = webpack(webpackConfig());
 
     new WebpackDevServer(compiler, {
         contentBase: pathConfig.appFolder,
@@ -24,12 +24,12 @@ gulp.task('webpack-dev-server', [], function () {
     });
 });
 
-gulp.task('webpack', [], function () {
-    webpack(webpackConfig(true), function (err) {
+gulp.task('webpack-client', [], function () {
+    webpack(webpackConfig(), function (err) {
         if (err) {
             console.log(err);
             return;
         }
-        console.log('webpack\'s done!');
+        console.log('webpack client\'s done!');
     });
 });
