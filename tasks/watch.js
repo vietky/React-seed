@@ -1,9 +1,9 @@
 var gulp = require('gulp');
-var build = require('./build.config.js');
+var pathConfig = require('../configs/path.js');
 
 gulp.task('watch', [], function () {
     gulp.watch([
-        build.appFolder + 'index.html'
+        pathConfig.appFolder + '/index.html'
     ], ['copy'], function () {
         console.log('copied!');
     });

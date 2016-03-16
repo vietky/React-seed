@@ -2,14 +2,14 @@ var gulp = require('gulp');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
-var buildConfig = require('./build.config.js');
+var pathConfig = require('../configs/path.js');
 var webpackConfig = require('./webpack.config.js');
 
 gulp.task('webpack-dev-server', [], function () {
     var compiler = webpack(webpackConfig(false));
 
     new WebpackDevServer(compiler, {
-        contentBase: buildConfig.appFolder,
+        contentBase: pathConfig.appFolder,
         filename: 'bundle.js',
         historyApiFallback: true,
         hot: true,
