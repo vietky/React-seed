@@ -1,6 +1,6 @@
 var pathConfig = require('../../configs/path.js');
 var React = require('react');
-var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
 var ReactRouter = require('react-router');
 var RouterContext = ReactRouter.RouterContext;
 var routes = require('../../client/components/Router.react.js');
@@ -12,9 +12,9 @@ RouteManager.route = function (app) {
             routes: routes,
             location: req.url
         }, function (err, redirect, props) {
-            var appHtml = ReactDOM.server.renderToString(React.createElement(RouterContext, props));
+            var appHtml = ReactDOMServer.renderToString(React.createElement(RouterContext, props));
             res.send(appHtml);
-//            res.sendFile(pathConfig.getClientFilePath('index.html'));
+        //            res.sendFile(pathConfig.getClientFilePath('index.html'));
         });
     });
 };
