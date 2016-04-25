@@ -1,14 +1,16 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-var Cell = React.createClass({
-    render: function () {
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        );
-    }
-});
+const Cell = ({children, attachedCtrl}) => {
+    return (
+        <div>
+            {children}&nbsp;{attachedCtrl}
+        </div>
+    );
+};
+
+Cell.propTypes = {
+    attachedCtrl: PropTypes.node
+}
 
 module.exports = Cell;

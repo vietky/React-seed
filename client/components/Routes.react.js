@@ -5,7 +5,7 @@ var Route = ReactRouter.Route;
 
 var App = require('./App.react.js');
 var Index = require('./index/Main.react.js');
-var BsTable = require('./bs-table/_Main.react.js');
+var BsTable = require('./bs-table/Main.react.js');
 var DemoApp = require('./demo-app/DemoApp.react.js');
 var About = require('./about/Main.react.js');
 
