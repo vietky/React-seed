@@ -21,10 +21,20 @@ class StaticTable extends BaseTable {
            columns: columns
         });
     }
+    shouldComponentUpdate(nextProps, nextState){
+        return true;
+//        return !(this.props.rowsCount === nextProps.rowsCount &&
+//            this.props.itemsPerPage === nextProps.itemsPerPage &&
+//            this.state.headers.length === nextState.headers.length &&
+//            this.state.columns.length === nextState.columns.length &&
+//            this.state.currentPage === nextState.currentPage &&
+//            this.props.updateCondition(nextProps, nextState)
+//            );
+    }
     render() {
         var self = this;
         var itemsPerPage = this.props.itemsPerPage;
-        var numberOfPages = Math.ceil(this.props.rowsCount / itemsPerPage);
+        var numberOfPages = Math.ceil((this.props.rowsCount+1) / itemsPerPage);
         var start = 0;
         var end = Math.min(this.props.rowsCount, start + itemsPerPage);
         if (this.props.currentPage === numberOfPages)
@@ -70,7 +80,15 @@ class StaticTable extends BaseTable {
 StaticTable.propTypes = {
     rowsCount: PropTypes.number.isRequired,
     itemsPerPage: PropTypes.number.isRequired,
-    onPageChanged: PropTypes.func,
+    currentPage: PropTypes.number.isRequired,
+    updateCondition: PropTypes.func,
+    onPageChanged: PropTypes.func
 };
+
+StaticTable.defaultProps = {
+    updateCondition: () => {
+        return true;
+    },
+}
 
 module.exports = StaticTable;

@@ -40,17 +40,18 @@ class BaseTable extends React.Component{
                 return;
             }
             assert(child.type.__TableColumn__, 'Wrong usage. Children should be <Column />');
+            var header = typeof(child.props.header) === 'function' ? child.props.header() : child.props.header;
             availableColumns.push({
                 index: index++,
-                name: child.props.header.props.children,
-                selected: true,
+                name: header.props.children,
+                selected: child.props.displayed,
             });
             headers.push(child.props.header);
             cells.push(child.props.cell);
         });
 
         return {
-            currentPage: Number(this.props.currentPage),
+            currentPage: Number(props.currentPage),
             headers: headers,
             cells: cells,
             columns: availableColumns,
@@ -81,8 +82,9 @@ class BaseTable extends React.Component{
     }
     _createHeader(cell, index){
         if (index < this.state.columns.length && !this.state.columns[index].selected) return;
+        var header = typeof(cell) === 'function' ? cell() : cell;
         return (
-            <div key={index} className="table-col">{cell}</div>
+            <div key={index} className="table-col">{header}</div>
         );
     }
     _createRow(item, index){

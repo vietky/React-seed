@@ -1,9 +1,11 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React, {PropTypes} from 'react';
+import _ from 'lodash';
 
-const Cell = ({children, attachedCtrl}) => {
+const Cell = (props) => {
+    let { children, attachedCtrl } = props;
+    const rest = _.omit(props, ['children', 'attachedCtrl']);
     return (
-        <div>
+        <div {...rest}>
             {children}&nbsp;{attachedCtrl}
         </div>
     );

@@ -49,8 +49,10 @@ class ItemsPerPageSelector extends BasePopoutComponent {
         });
     }
     render(){
-        var self = this;
-        var isOpen = this.state.isOpen;
+        const self = this;
+        const isOpen = this.state.isOpen;
+        const startRow = (this.props.currentPage-1) * this.state.selectedValue + 1;
+        const endRow = Math.min(startRow + this.state.selectedValue - 1, this.props.rowsCount);
         var createSubmenu = function(item, index){
             return (                
                 <div key={index} className="form-group" onClick={self._onChange.bind(self, item)}>
@@ -62,10 +64,11 @@ class ItemsPerPageSelector extends BasePopoutComponent {
                 </div>
             );
         };
+
         return (
 <ClickAnywhereOutside className={classnames({"item-control btn-post-per-page-wrap pull-left": true, "open": isOpen})} onPageClick={self._close}>
     <button type="button" className="btn btn-none dropdown-toggle" onClick={self._toggleDropdown}>
-        <span></span><span>{this.state.selectedValue}</span> items per page<i className="zmdi zmdi-chevron-down after"></i>
+        <span>{startRow} - {endRow}</span> of <span>{this.props.rowsCount}</span><i className="zmdi zmdi-chevron-down after"></i>
     </button>
     <div className="dropdown-menu animated fadeInDown pull-left">
         <div className="inner">
@@ -80,6 +83,8 @@ class ItemsPerPageSelector extends BasePopoutComponent {
 }
 
 ItemsPerPageSelector.propTypes = {
+    rowsCount: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
     currentItemsPerPage: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired
 };
